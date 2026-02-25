@@ -1,0 +1,30 @@
+spring:
+  application:
+    name: Notification Service
+
+  #Kafka configuration
+  kafka:
+    bootstrap-servers: localhost:9092
+    consumer:
+      group-id: notification-service-group
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      properties:
+        spring.json.trusted.packages: '*'
+        spring.json.type.mapping: event:com.subham.microservices.events.OrderPlacedEvent
+
+  #Email configuration
+  mail:
+    host: live.smtp.mailtrap.io
+    port: 587
+    username: smtp@mailtrap.io
+    password: 575b6bdf4317c397132031047e925062
+    properties:
+      mail:
+        smtp:
+          auth: true
+          starttls:
+            enable: true
+
+server:
+  port: 8087
