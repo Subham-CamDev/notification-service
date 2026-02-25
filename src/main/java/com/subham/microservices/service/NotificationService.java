@@ -30,15 +30,16 @@ public class NotificationService {
     helper.setTo(orderPlacedEvent.getEmail());
     helper.setSubject(String.format("Order Confirmation - %s", orderPlacedEvent.getOrderNumber()));
     helper.setText(String.format("""
-            Hi,
-            
-            Your Order with order number %s has been placed successfully.
-            We will notify you once it is shipped.
-            
-            Thank you for shopping with us!
-            Best regards,
-            Subham Microservices Stores
-            """, orderPlacedEvent.getOrderNumber()));
+                    Hi,
+                    
+                    Your Order with order number %s has been placed successfully.
+                    We will notify you once it is shipped.
+                    
+                    Thank you for shopping with us!
+                    Best regards,
+                    Subham Microservices Stores
+                    """,
+            orderPlacedEvent.getOrderNumber()));
     helper.setFrom("subham@demomailtrap.co");
 
     try {
@@ -46,7 +47,7 @@ public class NotificationService {
       log.info("Email notification sent successfully to: {}", orderPlacedEvent.getEmail());
     } catch (MailException e) {
       log.error("Failed to send email notification to: {}", orderPlacedEvent.getEmail(), e);
-      throw new RuntimeException("Exception Occurred while sending Email Notification",e);
+      throw new RuntimeException("Exception Occurred while sending Email Notification", e);
     }
   }
 }
