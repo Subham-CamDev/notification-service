@@ -8,10 +8,10 @@ spring:
     consumer:
       group-id: notification-service-group
       key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
-      value-deserializer: org.springframework.kafka.support.serializer.JsonDeserializer
+      value-deserializer: io.confluent.kafka.serializers.KafkaAvroDeserializer
       properties:
-        spring.json.trusted.packages: '*'
-        spring.json.type.mapping: event:com.subham.microservices.events.OrderPlacedEvent
+        schema.registry.url: http://127.0.0.1:8085
+        specific.avro.reader: true
 
   #Email configuration
   mail:
