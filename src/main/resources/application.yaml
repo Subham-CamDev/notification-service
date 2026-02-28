@@ -1,6 +1,6 @@
 spring:
   application:
-    name: Notification Service
+    name: notification-service
 
   #Kafka configuration
   kafka:
