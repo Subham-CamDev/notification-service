@@ -28,3 +28,37 @@ spring:
 
 server:
   port: 8087
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,metrics,prometheus,loggers,env
+  endpoint:
+    health:
+      show-details: always
+  observations:
+    key-values:
+      application: notification-service
+
+  #Tracing configs
+  tracing:
+    sampling:
+      probability: 1.0
+  opentelemetry:
+    tracing:
+      export:
+        otlp:
+          endpoint: http://localhost:4318/v1/traces # Endpoint for traces
+    logging:
+      export:
+        otlp:
+          endpoint: http://localhost:4318/v1/logs # Endpoint for logs
+    otlp:
+      metrics:
+        export:
+          endpoint: http://localhost:4318/v1/metrics # Endpoint for metrics
+          step: 2s # Export interval
+otel:
+  service:
+    name: notification-service
